@@ -36,6 +36,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 else:
     urlpatterns += [
+        re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
         re_path(r'^front/(?P<path>.*)$', serve, {'document_root': settings.FRONT_ROOT}, name='front'),
         re_path(r'^backend/(?P<path>.*)$', serve, {'document_root': settings.BACKEND_ROOT}, name='backend'),
         # 上传图片资源

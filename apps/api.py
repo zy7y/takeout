@@ -5,7 +5,7 @@ app = NinjaAPI(title="DjangoNinja-瑞吉外卖H5",
 
 
 @app.get("/index")
-def index():
+def index(request):
     return "Hello Django Ninja"
 
 
