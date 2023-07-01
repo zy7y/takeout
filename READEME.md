@@ -1,5 +1,5 @@
 # 项目介绍
-> 本项目使用Django Ninja实现《瑞吉外卖》；其中主要实现H5端接口，原管理系统使用Django Admin
+> 本项目使用Django Ninja实现[《瑞吉外卖》](https://www.bilibili.com/video/BV13a411q753/?spm_id_from=333.337.search-card.all.click&vd_source=f824feef5305252d9a349520313fd4db)；其中主要实现H5端接口，原管理系统使用Django Admin
 
 # 资源
 文章 -> 微信公众号：7y记
