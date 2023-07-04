@@ -23,9 +23,8 @@ from apps.api import app
 from takeout import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', app.urls),
-
+    path("admin/", admin.site.urls),
+    path("", app.urls),
 ]
 
 # 配置静态资源访问
@@ -36,10 +35,29 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 else:
     urlpatterns += [
-        re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
-        re_path(r'^front/(?P<path>.*)$', serve, {'document_root': settings.FRONT_ROOT}, name='front'),
-        re_path(r'^backend/(?P<path>.*)$', serve, {'document_root': settings.BACKEND_ROOT}, name='backend'),
+        re_path(
+            r"^static/(?P<path>.*)$",
+            serve,
+            {"document_root": settings.STATIC_ROOT},
+            name="static",
+        ),
+        re_path(
+            r"^front/(?P<path>.*)$",
+            serve,
+            {"document_root": settings.FRONT_ROOT},
+            name="front",
+        ),
+        re_path(
+            r"^backend/(?P<path>.*)$",
+            serve,
+            {"document_root": settings.BACKEND_ROOT},
+            name="backend",
+        ),
         # 上传图片资源
-        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}, name='media'),
+        re_path(
+            r"^media/(?P<path>.*)$",
+            serve,
+            {"document_root": settings.MEDIA_ROOT},
+            name="media",
+        ),
     ]
-

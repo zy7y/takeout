@@ -1,0 +1,8 @@
+asgiref==3.7.2
+backports.zoneinfo==0.2.1
+Django==4.2.2
+django-ninja==0.22.2
+Pillow==9.5.0
+pydantic==1.10.10
+sqlparse==0.4.4
+typing_extensions==4.7.0
