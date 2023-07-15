@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "apps.user",
     "apps.product",
     "apps.order",
+    # debug True的情况下要执行 python manage.py collectstatic 收集文件
+    "jsoneditor",
 ]
 
 MIDDLEWARE = [
