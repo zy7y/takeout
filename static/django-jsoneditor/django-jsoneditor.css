@@ -1,0 +1,7 @@
+div .outer_jsoneditor {
+    float: left;
+    width: 100%;
+    resize: both;
+    overflow: auto;
+    max-width: 100%;
+}
