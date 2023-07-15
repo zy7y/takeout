@@ -1,3 +1,5 @@
+from enum import Enum
+
 from django.db import models
 
 from apps.product.models import Dish
@@ -7,9 +9,21 @@ from apps.user.models import AddressBook, User
 
 
 class Orders(models.Model):
-    number = models.CharField(max_length=50, blank=True, null=True, db_comment="订单号")
+    PAY_METHOD_CHOICES = ((1, "微信"), (2, "支付宝"))
+
+    STATUS_CHOICES = (
+        (1, "待付款"),
+        (2, "待派送"),
+        (3, "已派送"),
+        (4, "已完成"),
+        (5, "已取消"),
+    )
+
+    number = models.CharField(max_length=50, blank=True, null=True, verbose_name="订单号")
     status = models.IntegerField(
-        db_comment="订单状态 1待付款，2待派送，3已派送，4已完成，5已取消", verbose_name="订单状态"
+        choices=STATUS_CHOICES,
+        db_comment="订单状态 1待付款，2待派送，3已派送，4已完成，5已取消",
+        verbose_name="订单状态",
     )
     user = models.ForeignKey(
         User,
@@ -30,7 +44,10 @@ class Orders(models.Model):
     order_time = models.DateTimeField(db_comment="下单时间", verbose_name="下单时间")
     checkout_time = models.DateTimeField(db_comment="结账时间", verbose_name="结账时间")
     pay_method = models.IntegerField(
-        db_comment="支付方式 1微信,2支付宝", default=1, verbose_name="支付方式"
+        choices=PAY_METHOD_CHOICES,
+        db_comment="支付方式 1微信,2支付宝",
+        default=1,
+        verbose_name="支付方式",
     )
     amount = models.DecimalField(
         max_digits=10, decimal_places=2, db_comment="实收金额", verbose_name="实收金额"
@@ -85,7 +102,8 @@ class OrderDetail(models.Model):
         db_table = "order_detail"
         db_table_comment = "订单明细表"
 
-        verbose_name = "订单明细"
+        verbose_name = "明细"
+        verbose_name_plural = "订单明细"
 
 
 class ShoppingCart(models.Model):

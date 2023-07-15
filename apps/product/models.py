@@ -4,9 +4,10 @@ from django.db import models
 
 
 class Category(models.Model):
+    TYPE = ((1, "菜品分类"), (2, "套餐分类"))
     # 套餐相关我们不做所以默认1就行了
     type = models.IntegerField(
-        blank=True, null=True, db_comment="类型   1 菜品分类 2 套餐分类", default=1
+        choices=TYPE, blank=True, null=True, db_comment="类型   1 菜品分类 2 套餐分类", default=1
     )
     name = models.CharField(
         unique=True, max_length=64, db_comment="分类名称", verbose_name="分类名称"
@@ -30,6 +31,7 @@ class Category(models.Model):
 
 
 class Dish(models.Model):
+    STATUS = ((0, "停售"), (1, "启售"))
     name = models.CharField(
         unique=True, max_length=64, db_comment="菜品名称", verbose_name="菜品名称"
     )
@@ -45,18 +47,17 @@ class Dish(models.Model):
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        blank=True,
-        null=True,
         db_comment="菜品价格",
         verbose_name="菜品价格",
     )
     code = models.CharField(max_length=64, db_comment="商品码", verbose_name="商品码")
     image = models.ImageField(upload_to="product/", verbose_name="图片", db_comment="图片")
-    # image = models.CharField(max_length=200, db_comment='图片',)
     description = models.CharField(
         max_length=400, blank=True, null=True, db_comment="描述信息"
     )
-    status = models.IntegerField(db_comment="0 停售 1 起售", verbose_name="售卖状态")
+    status = models.IntegerField(
+        choices=STATUS, default=1, db_comment="0 停售 1 起售", verbose_name="售卖状态"
+    )
     sort = models.IntegerField(db_comment="顺序", verbose_name="顺序")
     create_time = models.DateTimeField(db_comment="创建时间", auto_now_add=True)
     update_time = models.DateTimeField(

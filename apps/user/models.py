@@ -5,12 +5,18 @@ from django.db import models
 
 class User(models.Model):
     # 不定义主键默认会给一个自增长的 id
+    # choices 选择项字段只能在这里面选 前面数字入库，后面表示django admin展示文本
+    STATUS_CHOICES = ((0, "禁用"), (1, "正常"))
     name = models.CharField(
         max_length=50, blank=True, null=True, db_comment="姓名", verbose_name="姓名"
     )
     phone = models.CharField(max_length=100, db_comment="手机号", verbose_name="手机号")
     status = models.IntegerField(
-        blank=True, null=True, db_comment="状态 0:禁用，1:正常", verbose_name="状态"
+        choices=STATUS_CHOICES,
+        blank=True,
+        null=True,
+        db_comment="状态 0:禁用，1:正常",
+        verbose_name="状态",
     )
     create_time = models.DateTimeField(db_comment="创建时间", auto_now_add=True)
     update_time = models.DateTimeField(

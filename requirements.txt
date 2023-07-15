@@ -6,3 +6,4 @@ Pillow==9.5.0
 pydantic==1.10.10
 sqlparse==0.4.4
 typing_extensions==4.7.0
+django-jsoneditor==0.2.4
