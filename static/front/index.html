@@ -272,10 +272,15 @@
             },
             goodsPrice(){
               let price = 0
-              this.cartData.forEach(item=>{
-                price += (item.number * item.amount)
-              })
-              return price
+                // fix 前端精度问题
+                const multiplier = 100; // 选择合适的倍数，例如100表示保留两位小数
+
+                this.cartData.forEach(item => {
+                  const itemTotal = item.number * item.amount * multiplier;
+                  price += itemTotal;
+                });
+
+              return price / multiplier
             }
           },
           created(){

@@ -52,7 +52,7 @@ def download_img(request, name: str):
         return FileResponse(open(media_path, "rb"), content_type="image/png")
 
 
-from ..auth import session_auth, auth
+from ..auth import  auth
 
 
 @router.post("/shoppingCart/add", summary="添加购物车", tags=["购物车"], **auth,
@@ -77,7 +77,7 @@ def cart_add(request, data: AddCartSchema):
              response=R[ShoppingCartSchema])
 def cart_sub(request, data: SubCartSchema):
     try:
-        user = request.user
+        user = request.session["user"]
         obj = ShoppingCart.objects.get(dish_id=data.dish_id, user_id=user)
         if obj.number - 1 <= 0:
             obj.delete()
@@ -92,5 +92,5 @@ def cart_sub(request, data: SubCartSchema):
 @router.delete("/shoppingCart/clean", summary="清空购物车", tags=["购物车"], **auth,
                response=R)
 def cart_clean(request):
-    ShoppingCart.objects.filter(user_id=request.user).delete()
+    ShoppingCart.objects.filter(user_id=request.session["user"]).delete()
     return R.ok()
