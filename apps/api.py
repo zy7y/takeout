@@ -13,6 +13,7 @@ app.add_router("", router=product_router)
 
 @app.exception_handler(AuthenticationError)
 def handle_auth_error(request, exc):
+    # H5 跳转到登录页
     return JsonResponse(dict(msg="NOTLOGIN", code=0, data=None)
                         )
 
