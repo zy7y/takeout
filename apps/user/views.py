@@ -8,6 +8,7 @@ from ninja import Router
 
 from .models import User
 from .schemas import SendMsgSchema, SendMsgResultSchema, UserLoginSchema
+from ..auth import token_util
 from ..schemas import R
 
 router = Router(tags=['登录'])
@@ -32,7 +33,9 @@ def user_login(request, data: UserLoginSchema):
         user, _ = User.objects.get_or_create(phone=data.phone, status=1)
         # 3. Java原版这里使用的是存session 为了偷懒-不改动h5 我们也不用JWT了
         request.session['user'] = user.id
-        return R.ok(data=None)
+        # 4. 生成token
+        token = token_util.build(user.id)
+        return R.ok(data={"token": token})
     return R.fail("验证码错误")
 
 

@@ -181,6 +181,7 @@
                 async toPageLogin(){
                     const res = await loginoutApi()
                     if(res.code === 1){
+                        localStorage.removeItem("token")
                         window.requestAnimationFrame(()=>{
                             window.location.href = '/front/page/login.html'
                         }) 

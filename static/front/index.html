@@ -157,7 +157,7 @@
           </div>
           <div class="divNum">
             <div class="left">
-              <span>￥</span><span>{{detailsDialog.item.price/100}}</span>
+              <span>￥</span><span>{{detailsDialog.item.price}}</span>
             </div>
             <div class="right">
                 <div class="divSubtract" v-if="detailsDialog.item.number > 0">
@@ -190,7 +190,7 @@
                 </el-image>
                 <div class="divSubTitle">{{item.name + '(' + item.copies + '份)' }}
                   <div class="divPrice">
-                    <span>￥</span><span>{{item.price/100}}</span>
+                    <span>￥</span><span>{{item.price}}</span>
                   </div>
                 </div>                
                 <div class="content">{{item.description}}</div>
@@ -198,7 +198,7 @@
             </div>
           <div class="divNum">
               <div class="left">
-                <span>￥</span><span>{{setMealDialog.item.price/100}}</span>
+                <span>￥</span><span>{{setMealDialog.item.price}}</span>
               </div>
               <div class="right">
                   <div class="divSubtract" v-if="setMealDialog.item.number > 0">
@@ -386,7 +386,7 @@
             //菜单中往购物车中添加商品
             async addCart(item){
               let params = {
-                amount:item.price/100,//金额
+                amount:item.price,//金额
                 dishFlavor:item.dishFlavor,//口味  如果没有传undefined
                 dishId:undefined,//菜品id
                 setmealId:undefined,//套餐id
@@ -471,6 +471,7 @@
             },
             //购物车中减少商品数量
             async cartNumberSubtract(item){
+                console.log(item, "GGBond")
               let params = {
                   dishId:item.dishId,
                   setmealId:item.setmealId,
