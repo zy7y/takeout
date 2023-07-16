@@ -57,7 +57,7 @@
                 <div class="divName">{{item.name}}</div>
                 <div class="divDesc">{{item.description}}</div>
                 <div class="divDesc">{{'月销' + (item.saleNum ? item.saleNum : 0)  }}</div>
-                <div class="divBottom"><span>￥</span><span>{{item.price/100}}</span></div>
+                <div class="divBottom"><span>￥</span><span>{{item.price}}</span></div>
                 <div class="divNum">
                   <div class="divSubtract" v-if="item.number > 0">
                     <img src="./images/subtract.png" @click.prevent.stop="subtractCart(item)"/>
@@ -101,7 +101,7 @@
             </div>
           </div>
           <div class="divBottom">
-            <div><span class="spanMoney">￥</span>{{dialogFlavor.price/100}}</div>
+            <div><span class="spanMoney">￥</span>{{dialogFlavor.price}}</div>
             <div @click="dialogFlavorAddCart">加入购物车</div>
           </div>
           <div class="divFlavorClose" @click="dialogFlavor.show = false">
