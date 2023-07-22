@@ -5,12 +5,14 @@ from ninja.responses import JsonResponse
 from apps.user.views import router as user_router
 from apps.product.views import router as product_router
 from apps.user.addr_views import router as addr_router
+from apps.order.views import router as order_router
 
 app = NinjaAPI(title="DjangoNinja-瑞吉外卖H5", description="使用DjangoNinja实现《瑞吉外卖》项目")
 
 app.add_router("/user", router=user_router)
 app.add_router("", router=product_router)
 app.add_router("/addressBook", router=addr_router)
+app.add_router("/order", router=order_router)
 
 
 @app.exception_handler(AuthenticationError)

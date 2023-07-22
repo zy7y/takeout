@@ -85,7 +85,7 @@
             },
             computed:{},
             created(){
-                this.initData()
+                this.getList()
             },
             mounted(){},
             methods:{
@@ -99,9 +99,6 @@
                     }else{
                         history.go(-1)
                     }
-                },
-                initData(){
-                    this.getList()
                 },
                 async getList(){
                     if(this.finished){
