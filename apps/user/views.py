@@ -28,7 +28,7 @@ def send_msg(request, data: SendMsgSchema):
 @router.post("/login", summary="登录", response=R)
 def user_login(request, data: UserLoginSchema):
     # 1. 验证码存在?
-    if "0000" == data.code:
+    if "0000" == data.code or request.session.get(data.phone) == data.code:
         # 2. 查不到就创建
         user, _ = User.objects.get_or_create(phone=data.phone, status=1)
         # 3. Java原版这里使用的是存session 为了偷懒-不改动h5 我们也不用JWT了
