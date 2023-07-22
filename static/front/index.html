@@ -270,13 +270,11 @@
                 return '99+'
               }
             },
-            goodsPrice(){
-              let price = 0
-                // fix 前端精度问题
-                this.cartData.forEach(item => {
-                  price +=  Math.floor(item.number * item.amount * 100) / 100;
-                });
-              return price
+            goodsPrice() {
+              let price = this.cartData.reduce((accumulator, item) => {
+                return accumulator + (item.number * item.amount);
+              }, 0).toFixed(2);
+              return price === "0.00" ? "0" : price;
             }
           },
           created(){
