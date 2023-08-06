@@ -38,6 +38,7 @@ class DishFlavorSchema(ModelSchema):
 
 class DishSchema(ModelSchema):
     flavors: List[DishFlavorSchema] = []
+    saleNum: int = Field(..., alias="sale")
 
     class Config:
         model = Dish

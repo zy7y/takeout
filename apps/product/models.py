@@ -59,6 +59,7 @@ class Dish(models.Model):
         choices=STATUS, default=1, db_comment="0 停售 1 起售", verbose_name="售卖状态"
     )
     sort = models.IntegerField(db_comment="顺序", verbose_name="顺序")
+    sale = models.IntegerField(db_comment="销量", verbose_name="销量", default=0)
     create_time = models.DateTimeField(db_comment="创建时间", auto_now_add=True)
     update_time = models.DateTimeField(
         db_comment="更新时间", auto_now=True, verbose_name="更新时间"

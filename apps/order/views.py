@@ -1,9 +1,7 @@
 import uuid
-from typing import List
 
 from django.core.paginator import Paginator, EmptyPage
 from django.db import transaction
-from django.shortcuts import render
 from django.utils import timezone
 from django.db.models import Sum, F
 
@@ -49,13 +47,17 @@ def submit(request, data: OrderSubmitSchema):
             **data.dict()
         )
         # 批量创建订单详情（子订单）
-        order_details = [OrderDetail(
-            order=order_obj,
-            dish=entry.dish,
-            dish_flavor=entry.dish_flavor,
-            number=entry.number,
-            amount=entry.amount
-        ) for entry in carts]
+        order_details = []
+        for entry in carts:
+            order_details.append(OrderDetail(
+                order=order_obj,
+                dish=entry.dish,
+                dish_flavor=entry.dish_flavor,
+                number=entry.number,
+                amount=entry.amount
+            ))
+            entry.dish.sale += entry.number
+            entry.dish.save()
         OrderDetail.objects.bulk_create(order_details)
 
         # 清空购物车
