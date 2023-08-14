@@ -4,6 +4,7 @@ Django==4.2.2
 django-ninja==0.22.2
 Pillow==9.5.0
 pydantic==1.10.10
+PyJWT==2.7.0
 sqlparse==0.4.4
 typing_extensions==4.7.0
 django-jsoneditor==0.2.4

@@ -17,3 +17,4 @@ python manage.py runserver
 - 接口文档: http://127.0.0.1:8000/docs
 - 后台管理(Django Admin)：http://127.0.0.1:8000/admin
 - 前台项目: http://127.0.0.1:8000/front/index.html
+> 前台项目访问时留意`使用浏览器的手机模式`；页面点击检查，然后选择左上角💻📱图标；实在不知道请百度
